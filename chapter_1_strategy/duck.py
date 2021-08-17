@@ -1,9 +1,15 @@
+"""
+Duck module specify the type of the duck
+"""
+
 from abc import ABC, abstractmethod
 from fly_behavior import FlyBehavior, FlyWithWings, FlyNoWay
-from quack_behavior import QuackBehavior, Quack, Squeak, MuteQuack
+from quack_behavior import QuackBehavior, Quack, MuteQuack
+
 
 class Duck(ABC):
     '''Duck abstrac class'''
+
     def __init__(self):
         self._fly_behavior = None
         self._quack_behavior = None
@@ -22,7 +28,7 @@ class Duck(ABC):
     @property
     def quack_behavior(self):
         raise AttributeError('This is private attribute.')
-    
+
     @fly_behavior.setter
     def fly_behavior(self, fb):
         if isinstance(fb, FlyBehavior):
@@ -36,6 +42,7 @@ class Duck(ABC):
             self._quack_behavior = qb
         else:
             raise TypeError('The argument is not instance of QuackBehavior.')
+
     @abstractmethod
     def display(self):
         raise NotImplementedError()
@@ -45,33 +52,41 @@ class Duck(ABC):
 
     def perform_fly(self):
         self._check_behavior()
-        self._fly_behavior().fly()
+        self._fly_behavior.fly()
 
     def perform_quack(self):
         self._check_behavior()
-        self._quack_behavior().quack()
-        
+        self._quack_behavior.quack()
+
 
 class MalardDuck(Duck):
     def __init__(self):
         self.fly_behavior = FlyWithWings()
         self.quack_behavior = Quack()
-    
+
     def display(self):
-        print('I\'m Mallard Duck')
+        print('I\'m a real Mallard duck')
+
 
 class DecoyDuck(Duck):
     def display(self):
-        print('I\'m Decoy Duck') 
+        print('I\'m Decoy duck')
 
-class RubberDuck(Duck):  
+
+class RubberDuck(Duck):
     def display(self):
-        print('I\'m Rubber Duck') 
+        print('I\'m Rubber duck')
+
 
 class ModelDuck(Duck):
+    def __init__(self):
+        self._fly_behavior = FlyNoWay()
+        self._quack_behavior = MuteQuack()
+
     def display(self):
-        print('I\'m Model Duck')
+        print('I\'m Model duck')
+
 
 class RedHeadDuck(Duck):
     def display(self):
-        print('I\'m RedHead Duck')
+        print('I\'m RedHead duck')
