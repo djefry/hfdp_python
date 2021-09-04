@@ -1,5 +1,5 @@
 from subject import WeatherData
-from observer import CurrentConditionsDisplay, StatisticDisplay, ForecastDisplay
+from display import CurrentConditionsDisplay, StatisticDisplay, ForecastDisplay, HeatIndexDisplay
 
 
 if __name__ == "__main__":
@@ -7,6 +7,7 @@ if __name__ == "__main__":
     current_display = CurrentConditionsDisplay(weather_data)
     statistic_display = StatisticDisplay(weather_data)
     forecast_display = ForecastDisplay(weather_data)
+    heat_index_display = HeatIndexDisplay(weather_data)
 
     weather_data.set_measurements(80, 65, 30.4)
     weather_data.set_measurements(82, 70, 29.2)
